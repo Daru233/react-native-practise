@@ -7,7 +7,7 @@ https://www.youtube.com/watch?v=-0-S5a0eXPoc&t=3596s&ab_channel=ProgrammingwithM
 ```
 expo init my-App-Name
 ```
-If not in configured mode use flag:
+If not in interactive mode use flag:
 ```
 expo init --template blank my-App-Name
 ```
