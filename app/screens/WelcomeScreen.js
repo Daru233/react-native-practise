@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react'
-import { Image, ImageBackground, StyleSheet, View, Text, Button } from 'react-native';
+import { Image, ImageBackground, StyleSheet, View, Text} from 'react-native';
 
 function WelcomeScreen({navigation, route}) {
     return (
