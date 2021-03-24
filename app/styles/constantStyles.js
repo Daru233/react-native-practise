@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native'
+import { StyleSheet, Dimensions } from "react-native";
 
 export const container = {
     view: {
@@ -12,15 +12,16 @@ export const container = {
     medium: {
         width: "80%",
         height: "60%",
-    }
-}
+    },
+};
 
 export const colors = {
     primary: "#121212",
     secondary: "#1F1F1F",
     tertiary: "#2D2D2D",
     primaryTextColour: "#DFDFDF",
-}
+    placeholderTextColour: "#999999",
+};
 
 export const text = {
     h1: {
@@ -38,7 +39,7 @@ export const text = {
     p: {
         fontSize: 21,
     },
-}
+};
 
 export const containerShadow = {
     shadow: {
@@ -51,4 +52,4 @@ export const containerShadow = {
         shadowRadius: 7.49,
         elevation: 12,
     },
-}
+};

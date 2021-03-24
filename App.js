@@ -1,25 +1,26 @@
-import 'react-native-gesture-handler';
-import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import WelcomeScreen from './app/screens/WelcomeScreen';
-import LoginScreen from './app/screens/LoginScreen';
+import "react-native-gesture-handler";
+import React from "react";
+import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import WelcomeScreen from "./app/screens/WelcomeScreen";
+import LoginScreen from "./app/screens/LoginScreen";
 
 const Stack = createStackNavigator();
 
 export default function App() {
-  console.log("App Started")
+  console.log("App Started");
 
-  return(
+  return (
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          headerShown: false
-        }}>
-        <Stack.Screen name="Login" component={LoginScreen}/>
-        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen}/>
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
-};
+}

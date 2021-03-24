@@ -1,40 +1,69 @@
-import 'react-native-gesture-handler';
-import React from 'react'
-import { View, Text, Button, StyleSheet } from 'react-native';
-import { container, text, colors, containerShadow} from "../styles/constantStyles";
+import "react-native-gesture-handler";
+import React from "react";
+import {
+    View,
+    Text,
+    Button,
+    StyleSheet,
+    KeyboardAvoidingView,
+} from "react-native";
+import {
+    container,
+    text,
+    colors,
+    containerShadow,
+} from "../styles/constantStyles";
+import { TextInput } from "react-native-gesture-handler";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
-function LoginScreen({ navigation }){     
+function LoginScreen({ navigation }) {
+    // useEffect(() => {
+    //     fetch("http://localhost:5000/profiles")
+    //         .then((response) => response.json())
+    //         .then((json) => console.log(json));
+    // }, []);
+
+    useEffect(() => {
+        axios
+            .get("https://jsonplaceholder.typicode.com/todos/1")
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
+
     return (
         <View style={style.view}>
-
-            <View style={style.text} >
+            <View style={style.text}>
                 <Text style={style.welcome}>Welcome to</Text>
                 <Text style={style.brotein}>BROTEIN</Text>
+                <Text style={style.loginText}>Log in</Text>
             </View>
 
-            {/* <Button title="Login" 
-            onPress={() => 
-                navigation.navigate("WelcomeScreen")
-            } /> */}
-
-            <View style={style.loginContainer}>
-
-                <Text style={style.loginText} >Log in</Text>
-
+            <KeyboardAvoidingView style={style.loginContainer}>
                 <View style={style.loginUser}>
-                    <Text style={style.email} >email</Text>
+                    <TextInput
+                        style={style.email}
+                        placeholder="Email"
+                        placeholderTextColor={colors.placeholderTextColour}
+                    />
                 </View>
 
                 <View style={style.loginPass}>
-                    <Text style={style.password} >password</Text>
+                    <TextInput
+                        style={style.password}
+                        placeholder="Password"
+                        placeholderTextColor={colors.placeholderTextColour}
+                    />
                 </View>
 
                 <View style={style.loginButton}>
-                    <Text style={style.logginButtonText} >Log in</Text>
+                    <Text style={style.logginButtonText}>Log in</Text>
                 </View>
-
-            </View>
-
+            </KeyboardAvoidingView>
         </View>
     );
 }
@@ -65,7 +94,7 @@ const style = StyleSheet.create({
         ...container.medium,
         borderRadius: 30,
         top: 90,
-        alignItems: 'center',
+        alignItems: "center",
         justifyContent: "space-evenly",
         ...containerShadow.shadow,
     },
@@ -73,16 +102,16 @@ const style = StyleSheet.create({
         backgroundColor: colors.tertiary,
         ...container.small,
         borderRadius: 30,
-        bottom: 40,
-        justifyContent: 'center',
+        // bottom: 40,
+        justifyContent: "center",
         ...containerShadow.shadow,
     },
     loginPass: {
         backgroundColor: colors.tertiary,
         ...container.small,
         borderRadius: 30,
-        bottom: 60,
-        justifyContent: 'center',
+        // bottom: 60,
+        justifyContent: "center",
         ...containerShadow.shadow,
     },
     email: {
@@ -101,7 +130,7 @@ const style = StyleSheet.create({
         height: "12%",
         borderRadius: 30,
         bottom: 30,
-        justifyContent: 'center',
+        justifyContent: "center",
         ...containerShadow.shadow,
         alignItems: "center",
     },
@@ -109,6 +138,6 @@ const style = StyleSheet.create({
         color: colors.primaryTextColour,
         ...text.p,
     },
-})
+});
 
 export default LoginScreen;
