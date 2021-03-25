@@ -18,7 +18,11 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 function LoginScreen({ navigation }) {
-    const [name, setName] = useState({ firstName: "", lastName: "" });
+    // const [profile, setProfile] = useState("");
+
+    const [profile, setProfile] = useState({
+        profile: { firstName: "", lastName: "" },
+    });
 
     // useEffect(() => {
     //     fetch("http://localhost:5000/profiles")
@@ -26,26 +30,38 @@ function LoginScreen({ navigation }) {
     //         .then((json) => console.log(json));
     // }, []);
 
-    useEffect(() => {
-        axios
-            .get("https://jsonplaceholder.typicode.com/todos/1")
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, []);
+    // useEffect(() => {
+    //     axios
+    //         .get("https://jsonplaceholder.typicode.com/todos/1")
+    //         .then((response) => {
+    //             console.log(response);
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         });
+    // }, []);
 
     return (
         <View style={style.view}>
             <View style={style.text}>
-                <Text style={style.welcome}>CRUD Practise</Text>
+                <Text style={style.welcome}>
+                    {profile.profile.firstName}
+                    {profile.profile.lastName}
+                </Text>
             </View>
 
             <KeyboardAvoidingView style={style.loginContainer}>
                 <View style={style.loginUser}>
                     <TextInput
+                        value={profile.firstName}
+                        onChangeText={(value) =>
+                            setProfile({
+                                ...profile,
+                                profile: {
+                                    firstName: value,
+                                },
+                            })
+                        }
                         style={style.email}
                         placeholder="Email"
                         placeholderTextColor={colors.placeholderTextColour}
@@ -54,10 +70,12 @@ function LoginScreen({ navigation }) {
 
                 <View style={style.loginPass}>
                     <TextInput
-                        onChange={(e) =>
-                            setName({
-                                ...name,
-                                firstName: e.target.value,
+                        onChangeText={(value) =>
+                            setProfile({
+                                ...profile,
+                                profile: {
+                                    lastName: value,
+                                },
                             })
                         }
                         style={style.password}
@@ -83,7 +101,7 @@ const style = StyleSheet.create({
         top: 40,
     },
     welcome: {
-        ...text.h2,
+        ...text.h4,
         color: colors.primaryTextColour,
     },
     brotein: {
