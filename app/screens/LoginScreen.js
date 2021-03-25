@@ -40,9 +40,7 @@ function LoginScreen({ navigation }) {
     return (
         <View style={style.view}>
             <View style={style.text}>
-                <Text style={style.welcome}>Welcome to</Text>
-                <Text style={style.brotein}>BROTEIN</Text>
-                <Text style={style.loginText}>Log in</Text>
+                <Text style={style.welcome}>CRUD Practise</Text>
             </View>
 
             <KeyboardAvoidingView style={style.loginContainer}>
