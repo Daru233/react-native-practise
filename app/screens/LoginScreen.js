@@ -18,6 +18,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 function LoginScreen({ navigation }) {
+    const [name, setName] = useState({ firstName: "", lastName: "" });
+
     // useEffect(() => {
     //     fetch("http://localhost:5000/profiles")
     //         .then((response) => response.json())
@@ -54,6 +56,12 @@ function LoginScreen({ navigation }) {
 
                 <View style={style.loginPass}>
                     <TextInput
+                        onChange={(e) =>
+                            setName({
+                                ...name,
+                                firstName: e.target.value,
+                            })
+                        }
                         style={style.password}
                         placeholder="Password"
                         placeholderTextColor={colors.placeholderTextColour}
