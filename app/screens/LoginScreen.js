@@ -13,16 +13,16 @@ import {
     colors,
     containerShadow,
 } from "../styles/constantStyles";
-import { TextInput } from "react-native-gesture-handler";
+import { TextInput, TouchableHighlight } from "react-native-gesture-handler";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
 function LoginScreen({ navigation }) {
     // const [profile, setProfile] = useState("");
 
-    const [profile, setProfile] = useState({
-        profile: { firstName: "", lastName: "" },
-    });
+    // for now I can only get it to work with this and not
+    // {firstName: '', lastName: ''}
+    const [profile, setProfile] = useState({ firstName: "", lastName: "" });
 
     // useEffect(() => {
     //     fetch("http://localhost:5000/profiles")
@@ -41,12 +41,13 @@ function LoginScreen({ navigation }) {
     //         });
     // }, []);
 
+    const buttonHandler = () => {};
+
     return (
         <View style={style.view}>
             <View style={style.text}>
                 <Text style={style.welcome}>
-                    {profile.profile.firstName}
-                    {profile.profile.lastName}
+                    Current Object: {JSON.stringify(profile)}
                 </Text>
             </View>
 
@@ -55,12 +56,7 @@ function LoginScreen({ navigation }) {
                     <TextInput
                         value={profile.firstName}
                         onChangeText={(value) =>
-                            setProfile({
-                                ...profile,
-                                profile: {
-                                    firstName: value,
-                                },
-                            })
+                            setProfile({ ...profile, firstName: value })
                         }
                         style={style.email}
                         placeholder="Email"
@@ -71,12 +67,7 @@ function LoginScreen({ navigation }) {
                 <View style={style.loginPass}>
                     <TextInput
                         onChangeText={(value) =>
-                            setProfile({
-                                ...profile,
-                                profile: {
-                                    lastName: value,
-                                },
-                            })
+                            setProfile({ ...profile, lastName: value })
                         }
                         style={style.password}
                         placeholder="Password"
@@ -85,7 +76,9 @@ function LoginScreen({ navigation }) {
                 </View>
 
                 <View style={style.loginButton}>
-                    <Text style={style.logginButtonText}>Log in</Text>
+                    <TouchableHighlight onPress={buttonHandler}>
+                        <Text style={style.logginButtonText}>Log in</Text>
+                    </TouchableHighlight>
                 </View>
             </KeyboardAvoidingView>
         </View>
@@ -101,7 +94,7 @@ const style = StyleSheet.create({
         top: 40,
     },
     welcome: {
-        ...text.h4,
+        ...text.p,
         color: colors.primaryTextColour,
     },
     brotein: {
