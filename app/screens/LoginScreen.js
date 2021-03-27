@@ -6,6 +6,7 @@ import {
     Button,
     StyleSheet,
     KeyboardAvoidingView,
+    TouchableOpacity,
 } from "react-native";
 import {
     container,
@@ -20,8 +21,6 @@ import { useState, useEffect } from "react";
 function LoginScreen({ navigation }) {
     // const [profile, setProfile] = useState("");
 
-    // for now I can only get it to work with this and not
-    // {firstName: '', lastName: ''}
     const [profile, setProfile] = useState({ firstName: "", lastName: "" });
 
     // useEffect(() => {
@@ -41,7 +40,10 @@ function LoginScreen({ navigation }) {
     //         });
     // }, []);
 
-    const buttonHandler = () => {};
+    const buttonHandler = () => {
+        console.log(JSON.stringify(profile));
+        // TODO - send profile object to express backend via POST
+    };
 
     return (
         <View style={style.view}>
@@ -75,11 +77,11 @@ function LoginScreen({ navigation }) {
                     />
                 </View>
 
-                <View style={style.loginButton}>
-                    <TouchableHighlight onPress={buttonHandler}>
-                        <Text style={style.logginButtonText}>Log in</Text>
-                    </TouchableHighlight>
-                </View>
+                <TouchableOpacity onPress={buttonHandler}>
+                    <View style={style.loginButton}>
+                        <Text style={style.logginButtonText}>Login</Text>
+                    </View>
+                </TouchableOpacity>
             </KeyboardAvoidingView>
         </View>
     );
@@ -143,17 +145,14 @@ const style = StyleSheet.create({
     },
     loginButton: {
         backgroundColor: colors.tertiary,
-        width: "50%",
-        height: "12%",
         borderRadius: 30,
-        bottom: 30,
         justifyContent: "center",
         ...containerShadow.shadow,
         alignItems: "center",
     },
     logginButtonText: {
         color: colors.primaryTextColour,
-        ...text.p,
+        ...text.h3,
     },
 });
 
