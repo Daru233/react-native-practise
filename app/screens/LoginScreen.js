@@ -19,30 +19,37 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 function LoginScreen({ navigation }) {
-    // const [profile, setProfile] = useState("");
-
     const [profile, setProfile] = useState({ firstName: "", lastName: "" });
 
-    // useEffect(() => {
-    //     fetch("http://localhost:5000/profiles")
-    //         .then((response) => response.json())
-    //         .then((json) => console.log(json));
-    // }, []);
+    const postURL = "http://192.168.0.4:8080/";
 
-    // useEffect(() => {
-    //     axios
-    //         .get("https://jsonplaceholder.typicode.com/todos/1")
-    //         .then((response) => {
-    //             console.log(response);
-    //         })
-    //         .catch((error) => {
-    //             console.log(error);
-    //         });
-    // }, []);
+    const axiosConfig = {
+        headers: {
+            "Content-Type": "application/json;charset=UTF-8",
+            "Access-Control-Allow-Origin": "*",
+        },
+    };
+
+    const requestObject = {
+        firstName: profile.firstName,
+        lastName: profile.lastName,
+    };
 
     const buttonHandler = () => {
         console.log(JSON.stringify(profile));
-        // TODO - send profile object to express backend via POST
+
+        console.log("Sending request");
+
+        axios
+            .post(postURL, requestObject, axiosConfig)
+            .then((res) => {
+                console.log("RESPONSE RECEIVED: ", res);
+            })
+            .catch((err) => {
+                console.log("AXIOS ERROR: ", err);
+            });
+
+        console.log("Request sent.");
     };
 
     return (
