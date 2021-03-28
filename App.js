@@ -1,20 +1,26 @@
-import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import "react-native-gesture-handler";
+import React from "react";
+import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import WelcomeScreen from "./app/screens/WelcomeScreen";
+import LoginScreen from "./app/screens/LoginScreen";
+
+const Stack = createStackNavigator();
 
 export default function App() {
-
-  console.log("App Started")
+  console.log("App Started");
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1, // will grow x, y to fill free space
-    backgroundColor: 'dodgerblue',
-  },
-}); 
